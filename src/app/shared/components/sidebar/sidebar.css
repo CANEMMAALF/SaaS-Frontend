@@ -1,0 +1,75 @@
+.sidebar {
+  width: 260px;
+  background-color: var(--sidebar-bg);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #E5E7EB;
+  padding: 1.5rem 0;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+  margin-bottom: 2rem;
+  color: var(--primary-blue);
+}
+
+.logo-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-left: 0.75rem;
+  color: #111827;
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0 1rem;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  color: var(--text-gray);
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+  background-color: #F3F4F6;
+  color: #374151;
+}
+
+.nav-link.active {
+  background-color: #EFF6FF;
+  color: var(--primary-blue);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05); /* Adds a premium subtle shadow on active link */
+}
+
+/* Let's try to add the small left-sided border for active links like many SaaS apps have */
+.nav-link.active {
+  position: relative;
+}
+
+.nav-link.active::before {
+  content: '';
+  position: absolute;
+  left: -1rem;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background-color: var(--primary-blue);
+  border-radius: 0 4px 4px 0;
+}
+
+.link-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.75rem;
+}

@@ -1,0 +1,12 @@
+<div class="receipt-list">
+  @for (receipt of receipts; track receipt.id) {
+    <div class="receipt-card">
+      <span>Recibo #{{ receipt.id }} - $ {{ receipt.amount }}</span>
+      <app-toggle-switch 
+        [checked]="receipt.status === 'PAGADO'"
+        [disabled]="isLoading(receipt.id)"
+        (toggled)="onTogglePayment(receipt)">
+      </app-toggle-switch>
+    </div>
+  }
+</div>
