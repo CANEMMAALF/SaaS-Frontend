@@ -1,4 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+export interface UserProfile {
+  name: string;
+  avatar: string;
+}
 
 @Component({
   selector: 'app-topbar',
@@ -7,8 +12,8 @@ import { Component } from '@angular/core';
   styleUrl: './topbar.css'
 })
 export class TopbarComponent {
-  user = {
-    name: 'Administrador',
-    avatar: 'https://ui-avatars.com/api/?name=Admin&background=0D8ABC&color=fff' // placeholder
+  @Input() user: UserProfile = {
+    name: 'Usuario',
+    avatar: ''
   };
 }

@@ -52,28 +52,34 @@
       <thead>
         <tr>
           <th>Unidad</th>
-          <th>Dirección</th>
-          <th>Vecino Asignado</th>
-          <th>Adeudos</th>
+          <th>Inquilino / Cliente</th>
+          <th>Renta Fija</th>
+          <th>Estado del Mes</th>
           <th>Acciones</th>
         </tr>
       </thead>
       <tbody *ngIf="properties$ | async as properties; else loadingProps">
         <tr *ngFor="let prop of properties">
-          <td><span class="unit-badge">{{ prop.unidad }}</span></td>
-          <td class="text-secondary">{{ prop.direccion }}</td>
-          <td>{{ prop.vecinoAsignado }}</td>
+          <td><span class="unit-badge">{{ prop.nombre_unidad }}</span></td>
+          <td>{{ prop.cliente_nombre }}</td>
+          <td class="text-secondary">{{ formatCurrency(prop.monto_renta_fijo) }}</td>
           <td>
             <app-status-badge 
-              *ngIf="prop.status === 'Al corriente'" 
+              *ngIf="prop.estado_recibo === 'PAGADO'" 
               type="success" 
-              text="Al corriente">
+              text="Pagado">
             </app-status-badge>
 
             <app-status-badge 
-              *ngIf="prop.status === 'Pendiente'" 
+              *ngIf="prop.estado_recibo === 'PENDIENTE'" 
               type="danger" 
-              [text]="prop.adeudoAmount ? formatCurrency(prop.adeudoAmount) : 'Pendiente'">
+              [text]="'Pendiente: ' + formatCurrency(prop.deuda_restante)">
+            </app-status-badge>
+
+            <app-status-badge 
+              *ngIf="prop.estado_recibo === 'PARCIAL'" 
+              type="warning" 
+              [text]="'Resta: ' + formatCurrency(prop.deuda_restante)">
             </app-status-badge>
           </td>
           <td>

@@ -1,7 +1,7 @@
 <div class="main-container">
-  <app-sidebar></app-sidebar>
+  <app-sidebar [navItems]="layoutNavItems"></app-sidebar>
   <div class="content-wrapper">
-    <app-topbar></app-topbar>
+    <app-topbar [user]="currentUser"></app-topbar>
     <main class="page-content">
       <router-outlet></router-outlet>
     </main>

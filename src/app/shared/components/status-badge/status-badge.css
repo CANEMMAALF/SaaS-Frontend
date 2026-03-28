@@ -22,3 +22,8 @@
   background-color: #FEF2F2;
   color: #DC2626;
 }
+
+.badge.warning {
+  background-color: #FFFBEB;
+  color: #D97706;
+}

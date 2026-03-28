@@ -10,13 +10,14 @@ export interface PropertyStat {
   colorClass: string;
 }
 
+// Alineado a la tabla "propiedades" y sus relaciones
 export interface PropertyNode {
-  id: string;
-  unidad: string;
-  direccion: string;
-  vecinoAsignado: string;
-  adeudoAmount: number | null; // null if Al Corriente
-  status: 'Al corriente' | 'Pendiente';
+  id: string; // id de propiedad
+  nombre_unidad: string; // nombre_unidad
+  monto_renta_fijo: number; // monto_renta_fijo
+  cliente_nombre: string; // joined de clientes_info.nombre_completo
+  estado_recibo: 'PENDIENTE' | 'PAGADO' | 'PARCIAL'; // derivado de recibos y pagos_detalle
+  deuda_restante: number; // calculado de recibos.monto_deuda - sum(pagos.monto_pagado)
 }
 
 @Injectable({
@@ -28,22 +29,23 @@ export class MockDataService {
 
   getDashboardStats(): Observable<PropertyStat[]> {
     return of([
-      { title: 'Total Propiedades', value: '48', subtitle: 'Totales registradas', trend: '+12%', icon: 'home', colorClass: 'blue' },
-      { title: 'Vecinos Activos', value: '42', subtitle: 'Residentes actuales', trend: '+8%', icon: 'people', colorClass: 'green' },
-      { title: 'Recibos Pendientes', value: '15', subtitle: 'Por cobrar', trend: '-5%', icon: 'receipt', colorClass: 'orange' },
-      { title: 'Propiedades con Adeudos', value: '6', subtitle: 'Cuentas atrasadas', trend: '-3%', icon: 'alert', colorClass: 'red' },
-    ]).pipe(delay(500)); // Simulate network
+      { title: 'Total Unidades', value: '6', subtitle: 'Registradas', trend: '+2', icon: 'home', colorClass: 'blue' },
+      { title: 'Inquilinos Activos', value: '5', subtitle: 'Con contrato', trend: '+1', icon: 'people', colorClass: 'green' },
+      { title: 'Recibos Pendientes', value: '2', subtitle: 'Mes actual', trend: '-1', icon: 'receipt', colorClass: 'orange' },
+      { title: 'Ingresos del Mes', value: '$8,500', subtitle: 'Cobrado', trend: '+15%', icon: 'payment', colorClass: 'purple' },
+    ]).pipe(delay(500));
   }
 
   getProperties(): Observable<PropertyNode[]> {
     const props: PropertyNode[] = [
-      { id: '1', unidad: 'Depto 4B', direccion: 'Av. Principal 123, Piso 4', vecinoAsignado: 'Carlos Ramírez López', adeudoAmount: null, status: 'Al corriente' },
-      { id: '2', unidad: 'Casa 12', direccion: 'Calle Los Pinos 456', vecinoAsignado: 'Ana María Sánchez', adeudoAmount: 2450, status: 'Pendiente' },
-      { id: '3', unidad: 'Depto 1A', direccion: 'Av. Principal 123, Piso 1', vecinoAsignado: 'Roberto Fernández', adeudoAmount: null, status: 'Al corriente' },
-      { id: '4', unidad: 'Depto 7C', direccion: 'Av. Principal 123, Piso 7', vecinoAsignado: 'Sin asignar', adeudoAmount: null, status: 'Al corriente' },
-      { id: '5', unidad: 'Casa 8', direccion: 'Calle Los Pinos 234', vecinoAsignado: 'Patricia Méndez Cruz', adeudoAmount: 1890, status: 'Pendiente' },
-      { id: '6', unidad: 'Depto 3B', direccion: 'Av. Principal 123, Piso 3', vecinoAsignado: 'Luis Alberto García', adeudoAmount: null, status: 'Al corriente' },
+      { id: '1', nombre_unidad: 'Depto 4B', monto_renta_fijo: 5000, cliente_nombre: 'Carlos Ramírez López', estado_recibo: 'PAGADO', deuda_restante: 0 },
+      { id: '2', nombre_unidad: 'Casa 12',  monto_renta_fijo: 8000, cliente_nombre: 'Ana María Sánchez', estado_recibo: 'PENDIENTE', deuda_restante: 8000 },
+      { id: '3', nombre_unidad: 'Local Centro', monto_renta_fijo: 3500, cliente_nombre: 'Roberto Fernández', estado_recibo: 'PARCIAL', deuda_restante: 1500 },
+      { id: '4', nombre_unidad: 'Depto 7C', monto_renta_fijo: 4500, cliente_nombre: 'Sin asignar', estado_recibo: 'PAGADO', deuda_restante: 0 },
+      { id: '5', nombre_unidad: 'Casa 8',   monto_renta_fijo: 9000, cliente_nombre: 'Patricia Méndez Cruz', estado_recibo: 'PENDIENTE', deuda_restante: 9000 },
+      { id: '6', nombre_unidad: 'Depto 3B', monto_renta_fijo: 6000, cliente_nombre: 'Luis Alberto García', estado_recibo: 'PAGADO', deuda_restante: 0 },
     ];
     return of(props).pipe(delay(700));
   }
 }
+

@@ -1,6 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+
+export interface NavItem {
+  label: string;
+  path: string;
+  icon: string;
+}
 
 @Component({
   selector: 'app-sidebar',
@@ -10,10 +16,5 @@ import { RouterModule } from '@angular/router';
   styleUrl: './sidebar.css'
 })
 export class SidebarComponent {
-  navItems = [
-    { label: 'Propiedades', path: '/propiedades', icon: 'home' },
-    { label: 'Directorio de Vecinos', path: '/vecinos', icon: 'people' },
-    { label: 'Recibos', path: '/recibos', icon: 'receipt' },
-    { label: 'Pagos', path: '/pagos', icon: 'payment' }
-  ];
+  @Input() navItems: NavItem[] = [];
 }
