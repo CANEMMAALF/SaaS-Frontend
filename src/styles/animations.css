@@ -1,0 +1,24 @@
+/* Animaciones Globales */
+.fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Efecto Movimiento interactivo (como solicitó el usuario) */
+.btn-animate {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
+}
+
+.btn-animate:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 15px rgba(13, 138, 188, 0.3);
+}
+
+.btn-animate:active {
+  transform: translateY(1px) scale(0.98);
+}

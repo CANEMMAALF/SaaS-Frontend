@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Api } from '../../../../core/services/stateless/api';
+import { Api } from '../../../../core/services/stateless/back/api';
 import { ToggleSwitch } from '../../../../shared/components/toggle-switch/toggle-switch';
 import { catchError } from 'rxjs/operators';
 import { EMPTY } from 'rxjs';

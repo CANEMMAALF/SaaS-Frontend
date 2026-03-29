@@ -1,29 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MockDataService, PropertyStat, PropertyNode } from '../../../core/services/mock-data/mock-data.service';
-import { StatCardComponent } from '../../../shared/components/stat-card/stat-card';
-import { StatusBadgeComponent } from '../../../shared/components/status-badge/status-badge';
-import { Observable } from 'rxjs';
+import { RouterModule } from '@angular/router';
+import { BreadcrumbComponent, BreadcrumbItem } from '../../../shared/components/breadcrumb/breadcrumb';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, StatCardComponent, StatusBadgeComponent],
+  imports: [CommonModule, RouterModule, BreadcrumbComponent],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css'
 })
 export class DashboardComponent implements OnInit {
-  stats$!: Observable<PropertyStat[]>;
-  properties$!: Observable<PropertyNode[]>;
+  breadcrumbPaths: BreadcrumbItem[] = [
+    { label: 'Propiedades', url: '/propiedades', isLast: true }
+  ];
 
-  constructor(private mockDataService: MockDataService) {}
+  staticMessages = [
+    { id: 1, title: 'Nuevo comunicado', text: 'Junta de vecinos este viernes a las 8:00 PM', date: 'Hoy' },
+    { id: 2, title: 'Alerta de Mantenimiento', text: 'Revisión de elevadores programada', date: 'Ayer' },
+    { id: 3, title: 'Pago recibido', text: 'Se registró un nuevo pago en Unidad 204', date: 'Hace 2 días' },
+    { id: 4, title: 'Actualización del Sistema', text: 'Nuevas funciones de gestión disponibles', date: 'Hace 1 semana' }
+  ];
+
+  currentUser = { name: 'Administrador' };
+
+  constructor() {}
 
   ngOnInit() {
-    this.stats$ = this.mockDataService.getDashboardStats();
-    this.properties$ = this.mockDataService.getProperties();
-  }
-
-  formatCurrency(amount: number): string {
-    return new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(amount);
+    // Inicialización al cargar el módulo mediante lazy loading
   }
 }

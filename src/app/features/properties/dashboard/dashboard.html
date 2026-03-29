@@ -1,122 +1,41 @@
-<div class="dashboard-container">
+<div class="dashboard-layout fade-in">
   
-  <div class="page-header">
-    <div class="breadcrumbs">Inicio > Propiedades</div>
-    <div class="title-row">
-      <h1 class="page-title">Gestión de Propiedades</h1>
-      <button class="btn-primary">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="12" y1="5" x2="12" y2="19"></line>
-          <line x1="5" y1="12" x2="19" y2="12"></line>
-        </svg>
-        Nueva Propiedad
+  <!-- Zona Principal: Bienvenida Limpia -->
+  <div class="main-content-column">
+    <app-breadcrumb [items]="breadcrumbPaths"></app-breadcrumb>
+    
+    <div class="welcome-area">
+    <div class="welcome-banner">
+      <img src="https://illustrations.popsy.co/amber/freelancer.svg" alt="Bienvenida a Vecino al Día" />
+      <h1 class="welcome-title">¡Hola, {{ currentUser.name }}!</h1>
+      <h2 class="welcome-subtitle">Bienvenido de vuelta a Vecino al Día</h2>
+      <p class="text-secondary welcome-text">
+        Selecciona una opción del menú lateral para gestionar propiedades, recibos o vecinos.
+      </p>
+      <!-- Botón interactivo animado hacia subsección de tabla -->
+      <button class="btn-primary btn-animate" style="margin-top: 24px; font-size: 1.1rem; padding: 12px 24px;" [routerLink]="['/propiedades/lista']">
+        Ir a mis Propiedades
       </button>
     </div>
   </div>
 
-  <div class="stats-grid" *ngIf="stats$ | async as stats; else loadingStats">
-    <app-stat-card 
-      *ngFor="let stat of stats" 
-      [title]="stat.title"
-      [value]="stat.value"
-      [icon]="stat.icon"
-      [trend]="stat.trend"
-      [colorClass]="stat.colorClass">
-    </app-stat-card>
-  </div>
-  
-  <ng-template #loadingStats>
-    <div class="loading-state">Cargando métricas...</div>
-  </ng-template>
-
-  <div class="table-container">
-    <div class="table-actions">
-      <button class="btn-outline btn-filter">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
-        Filtrar
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
-      </button>
-
-      <div class="search-wrap">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        <input type="text" placeholder="Buscar...">
-      </div>
-
-      <button class="btn-outline btn-export">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-        Exportar
-      </button>
+  <!-- Zona Lateral: Mensajes ("vez los mensajes de a lado") -->
+  <aside class="side-messages">
+    <div class="side-header">
+      <h3>Notificaciones</h3>
+      <span class="badge">{{ staticMessages.length }} nuevas</span>
     </div>
 
-    <table class="data-table">
-      <thead>
-        <tr>
-          <th>Unidad</th>
-          <th>Inquilino / Cliente</th>
-          <th>Renta Fija</th>
-          <th>Estado del Mes</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody *ngIf="properties$ | async as properties; else loadingProps">
-        <tr *ngFor="let prop of properties">
-          <td><span class="unit-badge">{{ prop.nombre_unidad }}</span></td>
-          <td>{{ prop.cliente_nombre }}</td>
-          <td class="text-secondary">{{ formatCurrency(prop.monto_renta_fijo) }}</td>
-          <td>
-            <app-status-badge 
-              *ngIf="prop.estado_recibo === 'PAGADO'" 
-              type="success" 
-              text="Pagado">
-            </app-status-badge>
-
-            <app-status-badge 
-              *ngIf="prop.estado_recibo === 'PENDIENTE'" 
-              type="danger" 
-              [text]="'Pendiente: ' + formatCurrency(prop.deuda_restante)">
-            </app-status-badge>
-
-            <app-status-badge 
-              *ngIf="prop.estado_recibo === 'PARCIAL'" 
-              type="warning" 
-              [text]="'Resta: ' + formatCurrency(prop.deuda_restante)">
-            </app-status-badge>
-          </td>
-          <td>
-            <div class="action-buttons">
-              <button class="btn-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                Ver Detalle
-              </button>
-              <button class="btn-icon primary">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
-                Asignar Vecino
-              </button>
-              <button class="btn-more">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-              </button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <ng-template #loadingProps>
-      <tbody>
-        <tr><td colspan="5" class="loading-state">Cargando propiedades...</td></tr>
-      </tbody>
-    </ng-template>
-
-    <div class="table-footer">
-      <span class="text-secondary">Mostrando 1-6 de 48 propiedades</span>
-      <div class="pagination">
-        <button class="page-btn">1</button>
-        <button class="page-btn active">2</button>
-        <button class="page-btn">3</button>
-        <span class="page-dots">...</span>
-        <button class="page-btn">8</button>
+    <div class="messages-list">
+      <div class="message-card" *ngFor="let msg of staticMessages">
+        <div class="msg-header">
+          <span class="msg-indicator"></span>
+          <span class="msg-date">{{ msg.date }}</span>
+        </div>
+        <h4 class="msg-title">{{ msg.title }}</h4>
+        <p class="msg-text">{{ msg.text }}</p>
       </div>
     </div>
-  </div>
+  </aside>
 
 </div>

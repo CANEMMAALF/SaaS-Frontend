@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import 'styles/variables.css';
+@import 'styles/animations.css';
 
 :root {
   /* Brand Colors */
@@ -52,6 +54,7 @@ button {
 .h-screen { height: 100vh; }
 .font-medium { font-weight: 500; }
 .font-semibold { font-weight: 600; }
+
 
 /* Custom Scrollbar for better aesthetics */
 ::-webkit-scrollbar {

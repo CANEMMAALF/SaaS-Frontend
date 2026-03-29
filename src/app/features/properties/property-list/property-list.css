@@ -1,0 +1,49 @@
+.page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.page-header {
+  margin-bottom: 24px;
+}
+
+.title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-main, #1a1a1a);
+  margin: 0;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--color-primary, #0d8abc);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.content-wrapper {
+  flex: 1;
+}
+
+/* Customizadores de acciones enviadas al TableComponent */
+::ng-deep .btn-action-warning {
+  color: #d97706 !important;
+  background-color: #fef3c7 !important;
+}
+::ng-deep .btn-action-warning:hover {
+  background-color: #f59e0b !important;
+  color: #fff !important;
+}
