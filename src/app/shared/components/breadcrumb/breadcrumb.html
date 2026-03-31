@@ -1,1 +1,16 @@
-<p>breadcrumb works!</p>
+<nav aria-label="Navegación Breadcrumb">
+  <ol class="breadcrumb-list">
+    <li *ngFor="let path of paths; let last = last" class="breadcrumb-item" [class.active]="last">
+      <!-- Routing Seguro para elementos anteriores -->
+      <a *ngIf="path.url && !last" [routerLink]="path.url" class="breadcrumb-link">{{ path.label }}</a>
+      
+      <!-- Texto bloqueado con estilo primario para el actual -->
+      <span *ngIf="!path.url || last" class="breadcrumb-current">{{ path.label }}</span>
+      
+      <!-- Separador de Flecha Intermedia (Ultramoderno) -->
+      <svg *ngIf="!last" class="breadcrumb-separator" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </li>
+  </ol>
+</nav>

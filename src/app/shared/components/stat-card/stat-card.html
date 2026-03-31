@@ -1,1 +1,18 @@
-<p>stat-card works!</p>
+<div class="stat-card">
+  <div class="stat-content">
+    <h3 class="stat-title">{{ title }}</h3>
+    <p class="stat-value">{{ value }}</p>
+    
+    <!-- Micro-Data de Tendencias (Si se envía) -->
+    <div class="stat-trend" *ngIf="trend">
+      <span [class.positive]="trend.isPositive" [class.negative]="!trend.isPositive">
+        {{ trend.isPositive ? '↑' : '↓' }} {{ trend.value }}%
+      </span>
+      <span class="trend-text">vs. mes anterior</span>
+    </div>
+  </div>
+  
+  <div class="stat-icon-box">
+    <i class="material-icons">{{ icon }}</i>
+  </div>
+</div>

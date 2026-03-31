@@ -1,0 +1,44 @@
+.app-layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+
+  .main-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--surface-primary);
+    color: var(--text-main);
+    margin-left: 260px;
+    min-width: 0;
+    transition: margin-left 0.3s ease;
+    
+    /* Configuración especial "Árbol de la Vida" */
+    position: relative;
+    z-index: 1;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: url('../../../assets/images/vecino-bg.png');
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      opacity: 0.15; /* Fantasma dorado */
+      z-index: -1;
+      pointer-events: none; /* Que no estorbe clics */
+    }
+
+    .page-content {
+      flex: 1;
+      padding: 24px;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    @media (max-width: 1024px) {
+      margin-left: 0;
+    }
+  }
+}

@@ -1,9 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-spinner',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './spinner.html',
-  styleUrl: './spinner.css',
+  styleUrl: './spinner.scss'
 })
-export class Spinner {}
+export class SpinnerComponent {
+  // Input estricto para customizar el título de la espera
+  @Input() text: string = 'Cargando...';
+}
+

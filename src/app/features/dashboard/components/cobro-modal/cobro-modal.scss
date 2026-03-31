@@ -1,0 +1,49 @@
+.dialog-title {
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 0.5rem;
+}
+
+.dialog-content {
+  padding-top: 1rem !important;
+  min-width: 350px;
+}
+
+.info-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: transparent;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1.5rem;
+  border-left: 4px solid var(--primary); /* Oro mate */
+  border-top: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+
+  .subtitle {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .balance-amount {
+    margin: 0;
+    color: var(--text-main);
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.dialog-actions {
+  padding: 1rem 1.5rem !important;
+  border-top: 1px solid var(--border);
+  gap: 1rem;
+}
+

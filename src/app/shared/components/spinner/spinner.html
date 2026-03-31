@@ -1,1 +1,6 @@
-<p>spinner works!</p>
+<div class="spinner-overlay blur-backdrop fade-in">
+  <div class="spinner-container">
+    <div class="loader"></div>
+    <span class="loading-text" *ngIf="text">{{ text }}</span>
+  </div>
+</div>

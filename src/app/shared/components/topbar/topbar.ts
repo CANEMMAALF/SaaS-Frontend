@@ -1,19 +1,24 @@
-import { Component, Input } from '@angular/core';
-
-export interface UserProfile {
-  name: string;
-  avatar: string;
-}
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { BreadcrumbComponent, BreadcrumbItem } from '../breadcrumb/breadcrumb';
+import { ButtonComponent } from '../buttons/buttons';
 
 @Component({
   selector: 'app-topbar',
   standalone: true,
+  imports: [CommonModule, BreadcrumbComponent, ButtonComponent],
   templateUrl: './topbar.html',
-  styleUrl: './topbar.css'
+  styleUrl: './topbar.scss'
 })
 export class TopbarComponent {
-  @Input() user: UserProfile = {
-    name: 'Usuario',
-    avatar: ''
-  };
+  // El Dashboard dicta la ruta; lo estandarizamos temporalmente en el Layout superior
+  currentPath: BreadcrumbItem[] = [
+    { label: 'Administración', url: '/' },
+    { label: 'Visión General' }
+  ];
+
+  cerrarSesion(): void {
+    console.log('Sesión Terminada por Seguridad');
+  }
 }
+

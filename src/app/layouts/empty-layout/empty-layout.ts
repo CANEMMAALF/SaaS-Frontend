@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-empty-layout',
   imports: [],
   templateUrl: './empty-layout.html',
-  styleUrl: './empty-layout.css',
+  styleUrl: './empty-layout.scss',
 })
 export class EmptyLayout {}
+

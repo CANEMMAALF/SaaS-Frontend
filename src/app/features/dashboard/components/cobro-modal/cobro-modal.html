@@ -1,0 +1,52 @@
+<h2 mat-dialog-title class="dialog-title">Registrar Pago - {{ data.nombreUnidad }}</h2>
+
+<mat-dialog-content class="dialog-content">
+  <!-- Tarjeta visual con el saldo a pagar -->
+  <div class="info-section">
+    <p class="subtitle">Saldo Restante Actual:</p>
+    <p class="balance-amount">{{ data.saldoRestante | currency:'MXN':'symbol' }}</p>
+  </div>
+
+  <form [formGroup]="cobroForm" (ngSubmit)="onConfirm()">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Monto a Abonar</mat-label>
+      <input 
+        matInput 
+        type="number" 
+        formControlName="montoAbono" 
+        placeholder="Ej. 1500"
+        autocomplete="off"
+        min="1" 
+        [max]="data.saldoRestante">
+      
+      <span matTextPrefix>$&nbsp;</span>
+      
+      <!-- Bloque Robusto de Errores de Angular Material -->
+      <mat-error *ngIf="montoControl?.hasError('required')">
+        El monto es <strong>requerido</strong>.
+      </mat-error>
+      <mat-error *ngIf="montoControl?.hasError('min')">
+        El abono debe ser de mínimo <strong>$1.00</strong>.
+      </mat-error>
+      <mat-error *ngIf="montoControl?.hasError('max')">
+        No puedes abonar más del total adeudado (<strong>{{ data.saldoRestante | currency:'MXN':'symbol' }}</strong>).
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="dialog-actions">
+  <app-button 
+    color="secondary" 
+    variant="outline" 
+    (click)="onCancel()">
+    Cancelar
+  </app-button>
+  <app-button 
+    color="primary" 
+    variant="solid" 
+    [disabled]="cobroForm.invalid" 
+    (click)="onConfirm()">
+    Confirmar Pago
+  </app-button>
+</mat-dialog-actions>

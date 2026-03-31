@@ -1,0 +1,92 @@
+.sidebar {
+  width: 260px;
+  height: 100vh;
+  background-color: var(--surface-secondary);
+  color: var(--primary);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5); /* Sombra oscura fuerte para el panel negro */
+  transition: width 0.3s ease;
+  overflow-y: auto;
+
+  .sidebar-brand {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    border-bottom: 1px solid rgba(201, 166, 97, 0.15); /* Línea inferior bronceada */
+    gap: 12px;
+
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+
+      span {
+        color: var(--primary);
+      }
+    }
+
+    .logo-box {
+      width: 32px;
+      height: 32px;
+      background-color: transparent;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+  }
+
+  .sidebar-nav {
+    padding: 1.5rem 1rem;
+    flex: 1;
+
+    ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+        text-decoration: none;
+        color: var(--primary);
+        opacity: 0.7;
+        border-radius: var(--radius-md);
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border: 1px solid transparent;
+
+        &:hover {
+          background-color: rgba(201, 166, 97, 0.05); /* Glow dorado suave */
+          color: var(--primary-hover);
+          opacity: 1;
+        }
+
+        &.active {
+          background-color: rgba(201, 166, 97, 0.1);
+          color: var(--primary-hover);
+          border: 1px solid rgba(201, 166, 97, 0.3);
+          box-shadow: 0 4px 10px rgba(201, 166, 97, 0.15); /* Brillo dorado suave */
+          opacity: 1;
+        }
+
+        .icon-shape {
+          font-size: 1.3rem;
+        }
+      }
+    }
+  }
+}

@@ -1,8 +1,12 @@
-<div class="main-container">
-  <app-sidebar [navItems]="layoutNavItems"></app-sidebar>
-  <div class="content-wrapper">
-    <app-topbar [user]="currentUser"></app-topbar>
+<div class="app-layout">
+  <!-- Región Fija Izquierda -->
+  <app-sidebar></app-sidebar>
+  
+  <!-- Región Expansiva Derecha -->
+  <div class="main-wrapper">
+    <app-topbar></app-topbar>
     <main class="page-content">
+      <!-- Sistema de Rutas Base -->
       <router-outlet></router-outlet>
     </main>
   </div>

@@ -8,11 +8,11 @@ import { BreadcrumbComponent, BreadcrumbItem } from '../../../shared/components/
   standalone: true,
   imports: [CommonModule, RouterModule, BreadcrumbComponent],
   templateUrl: './dashboard.html',
-  styleUrl: './dashboard.css'
+  styleUrl: './dashboard.scss'
 })
 export class DashboardComponent implements OnInit {
   breadcrumbPaths: BreadcrumbItem[] = [
-    { label: 'Propiedades', url: '/propiedades', isLast: true }
+    { label: 'Propiedades', url: '/propiedades' }
   ];
 
   staticMessages = [
@@ -24,9 +24,10 @@ export class DashboardComponent implements OnInit {
 
   currentUser = { name: 'Administrador' };
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit() {
     // Inicialización al cargar el módulo mediante lazy loading
   }
 }
+

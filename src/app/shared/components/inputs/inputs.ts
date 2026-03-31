@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-inputs',
   imports: [],
   templateUrl: './inputs.html',
-  styleUrl: './inputs.css',
+  styleUrl: './inputs.scss',
 })
 export class Inputs {}
+

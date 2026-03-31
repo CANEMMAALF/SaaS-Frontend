@@ -1,20 +1,23 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-toggle-switch',
-  imports: [],
-  template: `
-    <button [disabled]="disabled" (click)="toggle()">
-      {{ checked ? 'ON' : 'OFF' }}
-    </button>
-  `,
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './toggle-switch.html',
+  styleUrl: './toggle-switch.scss'
 })
-export class ToggleSwitch {
-  @Input() checked = false;
-  @Input() disabled = false;
-  @Output() toggled = new EventEmitter<void>();
+export class ToggleSwitchComponent {
+  @Input() checked: boolean = false;
+  @Input() disabled: boolean = false;
+  @Output() toggled = new EventEmitter<boolean>();
 
-  toggle() {
-    this.toggled.emit();
+  onToggle(event: Event): void {
+    if (this.disabled) return;
+    const input = event.target as HTMLInputElement;
+    this.checked = input.checked;
+    this.toggled.emit(this.checked);
   }
 }
+

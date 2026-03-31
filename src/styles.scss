@@ -1,0 +1,129 @@
+/* 1. LOS @USE VAN HASTA ARRIBA (Regla de oro de SCSS) */
+@use 'styles/variables.scss';
+@use 'styles/animations.scss';
+
+/* 2. Ahora sí, importamos la fuente de Google */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+/* 3. INYECCIÓN CRÍTICA: Tema Base de Angular Material */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+/* Quitamos el :root de aquí porque tus colores ya viven en variables.scss */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  /* Jalamos los colores de tu variables.scss */
+  background-color: var(--surface-primary);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Common Layout Utilities */
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+/* Custom Scrollbar for better aesthetics */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(201, 166, 97, 0.5); /* Oro muy suave */
+}
+
+/* ========================================================== */
+/* OVERRIDES ANGULAR MATERIAL - DISEÑO LUJO PREMIUM           */
+/* ========================================================== */
+
+/* 1. Modal / Dialog (Surface Background) */
+.mat-mdc-dialog-container .mdc-dialog__surface, 
+.mat-mdc-dialog-surface {
+  background-color: var(--surface-primary) !important;
+  color: var(--text-main) !important;
+  box-shadow: 0 10px 25px -5px rgba(43, 35, 24, 0.3) !important;
+  border-radius: var(--radius-lg) !important;
+}
+
+.mat-mdc-dialog-content {
+  color: var(--text-main) !important;
+}
+
+/* 2. Inputs Outline de Angular Material (Oro Mate al hacer focus) */
+.mat-mdc-form-field.mat-focused .mdc-floating-label {
+  color: var(--primary) !important;
+}
+
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
+  border-color: var(--primary) !important;
+  border-width: 2px !important;
+}
+
+.mat-mdc-form-field.mat-focused .mdc-text-field__input {
+  caret-color: var(--primary) !important;
+}
+
+/* Cambiar color por defecto del texto del input */
+.mdc-text-field__input {
+  color: var(--text-main) !important;
+}

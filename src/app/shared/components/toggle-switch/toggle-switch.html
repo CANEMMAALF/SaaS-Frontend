@@ -1,1 +1,8 @@
-<p>toggle-switch works!</p>
+<label class="toggle-switch" [class.disabled]="disabled">
+  <input 
+    type="checkbox" 
+    [checked]="checked" 
+    [disabled]="disabled" 
+    (change)="onToggle($event)">
+  <span class="slider round"></span>
+</label>

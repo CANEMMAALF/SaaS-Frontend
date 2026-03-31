@@ -1,41 +1,42 @@
 <div class="dashboard-layout fade-in">
-  
+
   <!-- Zona Principal: Bienvenida Limpia -->
   <div class="main-content-column">
-    <app-breadcrumb [items]="breadcrumbPaths"></app-breadcrumb>
-    
+    <app-breadcrumb [paths]="breadcrumbPaths"></app-breadcrumb>
+
     <div class="welcome-area">
-    <div class="welcome-banner">
-      <img src="https://illustrations.popsy.co/amber/freelancer.svg" alt="Bienvenida a Vecino al Día" />
-      <h1 class="welcome-title">¡Hola, {{ currentUser.name }}!</h1>
-      <h2 class="welcome-subtitle">Bienvenido de vuelta a Vecino al Día</h2>
-      <p class="text-secondary welcome-text">
-        Selecciona una opción del menú lateral para gestionar propiedades, recibos o vecinos.
-      </p>
-      <!-- Botón interactivo animado hacia subsección de tabla -->
-      <button class="btn-primary btn-animate" style="margin-top: 24px; font-size: 1.1rem; padding: 12px 24px;" [routerLink]="['/propiedades/lista']">
-        Ir a mis Propiedades
-      </button>
-    </div>
-  </div>
-
-  <!-- Zona Lateral: Mensajes ("vez los mensajes de a lado") -->
-  <aside class="side-messages">
-    <div class="side-header">
-      <h3>Notificaciones</h3>
-      <span class="badge">{{ staticMessages.length }} nuevas</span>
-    </div>
-
-    <div class="messages-list">
-      <div class="message-card" *ngFor="let msg of staticMessages">
-        <div class="msg-header">
-          <span class="msg-indicator"></span>
-          <span class="msg-date">{{ msg.date }}</span>
-        </div>
-        <h4 class="msg-title">{{ msg.title }}</h4>
-        <p class="msg-text">{{ msg.text }}</p>
+      <div class="welcome-banner">
+        <img src="https://illustrations.popsy.co/amber/freelancer.svg" alt="Bienvenida a Vecino al Día" />
+        <h1 class="welcome-title">¡Hola, {{ currentUser.name }}!</h1>
+        <h2 class="welcome-subtitle">Bienvenido de vuelta a Vecino al Día</h2>
+        <p class="text-secondary welcome-text">
+          Selecciona una opción del menú lateral para gestionar propiedades, recibos o vecinos.
+        </p>
+        <!-- Botón interactivo animado hacia subsección de tabla -->
+        <button class="btn-primary btn-animate" style="margin-top: 24px; font-size: 1.1rem; padding: 12px 24px;"
+          [routerLink]="['/propiedades/lista']">
+          Ir a mis Propiedades
+        </button>
       </div>
     </div>
-  </aside>
 
-</div>
+    <!-- Zona Lateral: Mensajes ("vez los mensajes de a lado") -->
+    <aside class="side-messages">
+      <div class="side-header">
+        <h3>Notificaciones</h3>
+        <span class="badge">{{ staticMessages.length }} nuevas</span>
+      </div>
+
+      <div class="messages-list">
+        <div class="message-card" *ngFor="let msg of staticMessages">
+          <div class="msg-header">
+            <span class="msg-indicator"></span>
+            <span class="msg-date">{{ msg.date }}</span>
+          </div>
+          <h4 class="msg-title">{{ msg.title }}</h4>
+          <p class="msg-text">{{ msg.text }}</p>
+        </div>
+      </div>
+    </aside>
+
+  </div>

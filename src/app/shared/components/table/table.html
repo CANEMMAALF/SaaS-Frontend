@@ -27,8 +27,22 @@
         <!-- Data Rows -->
         <tr *ngFor="let item of data; trackBy: trackByIndex" class="table-row">
           <td *ngFor="let col of columnas" [ngClass]="col.cssClass">
-            <!-- Valor normal (aquí conectaremos el Custom Pipe en el futuro) -->
-            <span>{{ item[col.key] }}</span>
+            <ng-container [ngSwitch]="col.type">
+              <span *ngSwitchCase="'currency'">{{ item[col.key] | currency:'MXN':'symbol' }}</span>
+              <app-status-badge *ngSwitchCase="'badge'" [status]="item[col.key]"></app-status-badge>
+              
+              <!-- Botón de Acción Específico requerido por el Flujo 3 -->
+              <button 
+                *ngSwitchCase="'action_cobrar'" 
+                mat-stroked-button 
+                color="primary"
+                [disabled]="item['estado'] === 'PAGADO'"
+                (click)="onCobrar.emit(item)">
+                Cobrar
+              </button>
+
+              <span *ngSwitchDefault>{{ item[col.key] }}</span>
+            </ng-container>
           </td>
           
           <!-- Actions Column -->

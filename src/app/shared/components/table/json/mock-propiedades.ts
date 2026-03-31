@@ -1,10 +1,47 @@
-export const MOCK_PROPIEDADES = [
-  { id: '1', unidad: 'Torre A - 101', inquilino: 'Familia Ramírez', renta: '$3,500.00 MXN', estado: 'PAGADO' },
-  { id: '2', unidad: 'Torre A - 102', inquilino: 'Carlos Slim', renta: '$3,500.00 MXN', estado: 'PENDIENTE' },
-  { id: '3', unidad: 'Torre B - 204', inquilino: 'Laura Méndez', renta: '$4,200.00 MXN', estado: 'PAGADO' },
-  { id: '4', unidad: 'Casa 15', inquilino: 'Arturo Gómez', renta: '$5,000.00 MXN', estado: 'PENDIENTE' },
-  { id: '5', unidad: 'Local Comercial 1', inquilino: 'Oxxo', renta: '$12,000.00 MXN', estado: 'PAGADO' },
-  { id: '6', unidad: 'Torre C - 301', inquilino: 'Pedro Infante', renta: '$4,500.00 MXN', estado: 'PARCIAL' },
-  { id: '7', unidad: 'Torre C - 302', inquilino: 'María Félix', renta: '$4,500.00 MXN', estado: 'PENDIENTE' },
-  { id: '8', unidad: 'Casa 2', inquilino: 'Vicente Fernández', renta: '$8,000.00 MXN', estado: 'PAGADO' }
+import { IPropertyDashboardItem } from '../../../../core/models/property-dashboard.model';
+import { PaymentStatus } from '../../../../core/models/payment-status.enum';
+
+export const MOCK_PROPIEDADES: IPropertyDashboardItem[] = [
+  {
+    unidadId: '1',
+    nombreUnidad: 'Torre A - 101',
+    reciboActual: {
+      id: 'rec-001',
+      montoTotal: 5000,
+      montoPagado: 5000,
+      saldoRestante: 0,
+      fechaGeneracion: new Date(),
+      fechaVencimiento: new Date(new Date().getTime() + 5 * 24 * 60 * 60 * 1000),
+      estado: PaymentStatus.PAGADO
+    },
+    ultimoPago: new Date()
+  },
+  {
+    unidadId: '2',
+    nombreUnidad: 'Torre A - 102',
+    reciboActual: {
+      id: 'rec-002',
+      montoTotal: 5000,
+      montoPagado: 2000,
+      saldoRestante: 3000,
+      fechaGeneracion: new Date(),
+      fechaVencimiento: new Date(new Date().getTime() + 5 * 24 * 60 * 60 * 1000),
+      estado: PaymentStatus.PARCIAL
+    },
+    ultimoPago: new Date()
+  },
+  {
+    unidadId: '3',
+    nombreUnidad: 'Torre B - 204',
+    reciboActual: {
+      id: 'rec-003',
+      montoTotal: 5000,
+      montoPagado: 0,
+      saldoRestante: 5000,
+      fechaGeneracion: new Date(),
+      fechaVencimiento: new Date(new Date().getTime() + 5 * 24 * 60 * 60 * 1000),
+      estado: PaymentStatus.PENDIENTE
+    },
+    ultimoPago: null
+  }
 ];

@@ -2,13 +2,16 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, Elemen
 import { CommonModule } from '@angular/common';
 import { TableColumn } from './interface/table-column';
 import { TableOptions } from './interface/table-options';
+import { StatusBadgeComponent } from '../status-badge/status-badge';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [CommonModule],
+  // Angular Material Modules importados post-instalación
+  imports: [CommonModule, StatusBadgeComponent, MatButtonModule],
   templateUrl: './table.html',
-  styleUrl: './table.css',
+  styleUrl: './table.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TableComponent<T extends { [key: string]: any }> {
@@ -29,6 +32,9 @@ export class TableComponent<T extends { [key: string]: any }> {
 
   @Input() acciones: TableOptions<T>[] = [];
   @Output() accionClick = new EventEmitter<{ accion: string, item: T }>();
+  
+  // Evento específico inyectado para el Flujo 3
+  @Output() onCobrar = new EventEmitter<T>();
 
   constructor(private el: ElementRef, private renderer: Renderer2) {}
 
@@ -56,3 +62,4 @@ export class TableComponent<T extends { [key: string]: any }> {
     }
   }
 }
+

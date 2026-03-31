@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-full-layout',
   imports: [],
   templateUrl: './full-layout.html',
-  styleUrl: './full-layout.css',
+  styleUrl: './full-layout.scss',
 })
 export class FullLayout {}
+

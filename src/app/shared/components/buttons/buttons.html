@@ -1,1 +1,6 @@
-<p>buttons works!</p>
+<button 
+  [class]="buttonClasses" 
+  [disabled]="disabled">
+  <!-- Renderizamos dinámicamente lo que reciba como tag interno (iconos, spans, texto) -->
+  <ng-content></ng-content>
+</button>

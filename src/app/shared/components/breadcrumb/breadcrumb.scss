@@ -1,0 +1,42 @@
+.breadcrumb-list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.9rem;
+  font-family: var(--font-family, inherit);
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb-link {
+  color: var(--text-muted, #6B7280);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.breadcrumb-link:hover {
+  color: var(--primary, #4F46E5);
+}
+
+.breadcrumb-current {
+  color: var(--primary, #4F46E5);
+  font-weight: 600;
+  /* Visualmente detiene la idea de darle clic al lugar donde ya estamos */
+  pointer-events: none;
+}
+
+.breadcrumb-separator {
+  width: 14px;
+  height: 14px;
+  color: var(--text-muted, #9CA3AF);
+  margin: 0 8px; /* Espaciado estricto transversal */
+  flex-shrink: 0;
+  opacity: 0.6;
+}
